@@ -18,11 +18,24 @@ const colors = {
 };
 
 const main_types = Object.keys(colors);
+// ["fire", "grass", "electric"]
+
 
 const fetchPokemons = async () => {
     for(let i = 1; i <= pokemon_count; i++) {
         await getPokemon(i);
     }
+};
+
+const getPokemon = async function(id) {
+// get pokemon data from pokeapi
+    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    createPokemonCard(data)
+
 };
 
 
