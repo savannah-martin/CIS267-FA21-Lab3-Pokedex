@@ -28,9 +28,13 @@ let allPokemon = [];
 
 const fetchPokemon = async () => {
     for(let i = 1; i <= pokemon_count; i++) {
-        allPokemon.push(await getPokemon(i));
+        let p = await getPokemon(i);
+        if (p.name === "mr-mime"){
+            p.name = "Mr. Mime";
+        }
+        allPokemon.push( p );
     }
-};
+}; //FINISH
 
 const getPokemon = async function(id) {
 // get pokemon data from pokeapi
@@ -85,4 +89,24 @@ async function loadAllPokemon() {
     renderPokemon(allPokemon);
 }
 
+function clearPokemon () {
+    poke_container.innerHTML = "";
+}
+
 loadAllPokemon();
+
+const searchButton = document.getElementById("searchButton");
+
+searchButton.addEventListener('click', () => {
+    const searchInput = document.getElementById("searchInput");
+    const searchQuery = searchInput.value;
+
+    let searchResults = allPokemon.filter(pokemon => {
+        if (pokemon.name === searchQuery)
+            return true;
+    });
+
+    clearPokemon();
+    renderPokemon(searchResults);
+
+});
