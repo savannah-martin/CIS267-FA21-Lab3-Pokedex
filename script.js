@@ -20,10 +20,11 @@ const colors = {
 const main_types = Object.keys(colors);
 // ["fire", "grass", "electric"]
 
+let allPokemon = [];
 
-const fetchPokemons = async () => {
+const fetchPokemon = async () => {
     for(let i = 1; i <= pokemon_count; i++) {
-        await getPokemon(i);
+        allPokemon.push(await getPokemon(i));
     }
 };
 
@@ -34,10 +35,14 @@ const getPokemon = async function(id) {
     const response = await fetch(url);
     const data = await response.json();
 
-    createPokemonCard(data)
+    return data;
+    //createPokemonCard(data)
 
 };
 
+const renderPokemon = async function(pokemonArray){
+    pokemonArray.forEach(pokemon => createPokemonCard(pokemon));
+};
 
 const createPokemonCard = (pokemon) => {
     const pokemonEl = document.createElement('div');
@@ -71,4 +76,9 @@ const createPokemonCard = (pokemon) => {
     poke_container.appendChild(pokemonEl);
 };
 
-fetchPokemons();
+async function loadAllPokemon() {
+    await fetchPokemon();
+    renderPokemon(allPokemon);
+}
+
+loadAllPokemon();
