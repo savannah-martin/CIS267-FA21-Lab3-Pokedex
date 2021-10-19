@@ -19,6 +19,17 @@ h1 {
   letter-spacing: 3px;
 }
 
+.btn {
+  margin: 2px !important;
+  border-radius: 1px;
+  border: solid 1px black;
+  color: rgb(6, 24, 24);
+}
+
+.btn:hover {
+  background-color: rgb(6, 24, 24);
+}
+
 .poke-container {
   display: flex;
   flex-wrap: wrap;
@@ -86,3 +97,4 @@ h1 {
   text-transform: capitalize;
   font-weight: 200;
 }
+
