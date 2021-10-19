@@ -64,27 +64,45 @@ const createPokemonCard = (pokemon) => {
     const type1 = pokemon.types[0].type.name;
     const type2 = pokemon.types.length > 1 ? pokemon.types[1].type.name : null;
     const color = colors[type1];
+    const color2 = colors[type2];
     console.log(`${type1} |  ${type2}`);
 
-    pokemonEl.style.backgroundColor = color;
-
+    
     const officialArtwork = pokemon.sprites.other["official-artwork"].front_default;
-
-    const pokemonInnerHTML = `
-    <div > <a href="#" id=${pokemon.id} > Favorite </a> </div>
-    <div class="img-container">
+    
+    if (type2 != null) {
+        //var gradient = 
+        //pokemonEl.style.backgroundColor = `linear-gradient(110deg, ${color} 60%, ${color2} 60%)`;
+        const pokemonInnerHTML = `
+        <div > <a href="#" id=${pokemon.id} > Favorite </a> </div>
+        <div class="img-container">
         <!--<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
-    </div>
-    <div class="info">
+        </div>
+        <div class="info">
+        <span class="number">#${id}</span>
+        <h3 class="name">${name}</h3>
+        <small class="type">Type: <span>${type1} | ${type2}</span> </small>
+        </div>
+        `;
+        pokemonEl.innerHTML = pokemonInnerHTML;
+    }
+    else {
+        pokemonEl.style.backgroundColor = color;
+        const pokemonInnerHTML = `
+        <div > <a href="#" id=${pokemon.id} > Favorite </a> </div>
+        <div class="img-container">
+        <!--<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
+        <img src="${officialArtwork}" />
+        </div>
+        <div class="info">
         <span class="number">#${id}</span>
         <h3 class="name">${name}</h3>
         <small class="type">Type: <span>${type1}</span> </small>
     </div>
     `;
-
     pokemonEl.innerHTML = pokemonInnerHTML;
-
+    }
     poke_container.appendChild(pokemonEl);
 };
 
@@ -111,9 +129,14 @@ function updateSearchResults() {
     });
 
     // search by id
-    
+    let idSearchResults = allPokemon.filter(pokemon => {
+        return pokemon.id.toString().includes(searchQuery);
+    } )
+
+
     clearPokemon();
     renderPokemon( searchResults );
+    renderPokemon(idSearchResults);
 }
 
 searchButton.addEventListener('click', () => {
