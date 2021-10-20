@@ -170,7 +170,9 @@ const steelButton = document.getElementById("Steel");
 const favoriteButton = document.getElementById("Favorite");
 const shinyButton = document.getElementById("Shiny");
 const legendaryButton = document.getElementById("Legendary");
+const resetButton = document.getElementById("Reset")
 
+resetButton.addEventListener('click', () => updateSearchResults());
 
 fireButton.addEventListener('click', () => {
     let fireResults = allPokemon.filter( pokemon => {
