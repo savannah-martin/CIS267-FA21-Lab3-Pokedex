@@ -69,7 +69,7 @@ const createPokemonCard = (pokemon) => {
     const officialArtwork = pokemon.sprites.other["official-artwork"].front_default;
     
     if (type2 != null) {
-        pokemonEl.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
+        pokemonEl.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
         const pokemonInnerHTML = `
         <div > <a href="#" id=${pokemon.id}> Star </a></div>
         <div class="img-container">
