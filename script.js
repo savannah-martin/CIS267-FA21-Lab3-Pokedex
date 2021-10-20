@@ -69,9 +69,9 @@ const createPokemonCard = (pokemon) => {
     const officialArtwork = pokemon.sprites.other["official-artwork"].front_default;
     
     if (type2 != null) {
-        //pokemonEl.setGradient();
+        pokemonEl.style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
         const pokemonInnerHTML = `
-        <div > <a href="#" id=${pokemon.id} > Favorite </a> </div>
+        <div > <a href="#" id=${pokemon.id}> Star </a></div>
         <div class="img-container">
         <!--<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
@@ -87,7 +87,7 @@ const createPokemonCard = (pokemon) => {
     else {
         pokemonEl.style.backgroundColor = color;
         const pokemonInnerHTML = `
-        <div > <a href="#" id=${pokemon.id} > Favorite </a> </div>
+        <div > <a href="#" id=${pokemon.id} > Star </a></div>
         <div class="img-container">
         <!--<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
