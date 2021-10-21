@@ -450,19 +450,18 @@ legendaryButton.addEventListener('click', () => {
 function changeFav (idStar) {
     if (document.getElementById(idStar).className = "bi bi-star") {
         document.getElementById(idStar).className = "bi bi-star-fill"
-        this.isFavorite === true
+        // this.isFavorite === true
     
     }
     else {
         document.getElementById(idStar).className == "bi bi-star"
-        this.isFavorite === false
+        // this.isFavorite === false
     }
 }
 
 favoriteButton.addEventListener('click', () => {
     let favoriteResults = allPokemon.filter( pokemon => {
-                r = pokemon.isFavorite === true
-                console.log("well")
+                r = pokemon.className === "bi-star-fill"
                 return r
             })
 
