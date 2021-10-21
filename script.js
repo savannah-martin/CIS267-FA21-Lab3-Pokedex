@@ -104,13 +104,59 @@ const createPokemonCard = (pokemon) => {
     poke_container.appendChild(pokemonEl);
 };
 
-// const rendershinyPokemon = async function (pokemonArray) {
-//     pokemonArray.forEach(pokemon => createShinyPokemonCard(pokemon));!!!!!!!!!
-// };
+const rendershinyPokemon = async function (pokemonArray) {
+    pokemonArray.forEach(pokemon => createShinyPokemonCard(pokemon));
+};
 
-// shinyButton.addEventListener('click', () => {
-//     rendershinyPokemon(allPokemon);
-// });
+const createShinyPokemonCard = (pokemon) => {
+    const pokemonEl = document.createElement('div');
+    pokemonEl.classList.add('pokemon');
+
+    const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+    const id = pokemon.id.toString().padStart(3, '0');
+
+    const poke_types = pokemon.types.map(type => type.type.name);
+    const type1 = pokemon.types[0].type.name;
+    const type2 = pokemon.types.length > 1 ? pokemon.types[1].type.name : null;
+    const color = colors[type1];
+    const color2 = colors[type2];
+    
+    const officialArtwork = pokemon.sprites.front_shiny;
+    
+    if (type2 != null) {
+        pokemonEl.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
+        const pokemonInnerHTML = `
+        <div class="star-btn"> <a href="#" id=${pokemon.id} > ☆ </a></div>
+        <div class="img-container">
+        <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
+        <img src="${officialArtwork}" />
+        </div>
+        <div class="info">
+        <span class="number">#${id}</span>
+        <h3 class="name">${name}</h3>
+        <small class="type">Type: <span>${type1} | ${type2}</span> </small>
+        </div>
+        `;
+        pokemonEl.innerHTML = pokemonInnerHTML;
+    }
+    else {
+        pokemonEl.style.backgroundColor = color;
+        const pokemonInnerHTML = `
+        <div class="star-btn"> <a href="#" id=${pokemon.id} > ☆ </a></div>
+        <div class="img-container">
+        <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
+        <img src="${officialArtwork}" />
+        </div>
+        <div class="info">
+        <span class="number">#${id}</span>
+        <h3 class="name">${name}</h3>
+        <small class="type">Type: <span>${type1}</span> </small>
+    </div>
+    `;
+    pokemonEl.innerHTML = pokemonInnerHTML;
+    }
+    poke_container.appendChild(pokemonEl);
+};
 
 async function loadAllPokemon() {
     await fetchPokemon();
@@ -128,18 +174,18 @@ const searchInput = document.getElementById("searchInput");
 
 function updateSearchResults() {
     const searchQuery = searchInput.value;
-
+    
     // search by name
     let searchResults = allPokemon.filter( pokemon => {
         return pokemon.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
-
+    
     // search by id
     let idSearchResults = allPokemon.filter(pokemon => {
         return pokemon.id.toString().padStart(3, '0').includes(searchQuery);
     } )
-
-
+    
+    
     clearPokemon();
     renderPokemon( searchResults );
     renderPokemon(idSearchResults);
@@ -182,6 +228,11 @@ const legendaryButton = document.getElementById("Legendary");
 const resetButton = document.getElementById("Reset")
 
 resetButton.addEventListener('click', () => updateSearchResults());
+
+shinyButton.addEventListener('click', () => {
+    clearPokemon();
+    rendershinyPokemon(allPokemon);
+});
 
 fireButton.addEventListener('click', () => {
     let fireResults = allPokemon.filter( pokemon => {
