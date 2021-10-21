@@ -71,9 +71,9 @@ const createPokemonCard = (pokemon) => {
     if (type2 != null) {
         pokemonEl.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
         const pokemonInnerHTML = `
-        <div > <a href="#" id=${pokemon.id}> Star </a></div>
+        <div class="star-btn"> <a href="#" id=${pokemon.id} > ☆ </a></div>
         <div class="img-container">
-        <!--<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
+        <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
         </div>
         <div class="info">
@@ -85,11 +85,12 @@ const createPokemonCard = (pokemon) => {
         pokemonEl.innerHTML = pokemonInnerHTML;
     }
     else {
+        //★
         pokemonEl.style.backgroundColor = color;
         const pokemonInnerHTML = `
-        <div > <a href="#" id=${pokemon.id} > Star </a></div>
+        <div class="star-btn"> <a href="#" id=${pokemon.id} > ☆ </a></div>
         <div class="img-container">
-        <!--<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
+        <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
         </div>
         <div class="info">
@@ -102,6 +103,14 @@ const createPokemonCard = (pokemon) => {
     }
     poke_container.appendChild(pokemonEl);
 };
+
+const rendershinyPokemon = async function (pokemonArray) {
+    pokemonArray.forEach(pokemon => createShinyPokemonCard(pokemon));!!!!!!!!!
+};
+
+shinyButton.addEventListener('click', () => {
+    rendershinyPokemon(allPokemon);
+});
 
 async function loadAllPokemon() {
     await fetchPokemon();
@@ -372,4 +381,18 @@ steelButton.addEventListener('click', () => {
     })
     clearPokemon();
     renderPokemon(steelResults);
+});
+
+const legendaryArray = ["Articuno", "Zapdos", "Moltres", "Mewtwo"]
+
+legendaryButton.addEventListener('click', () => {
+    let legendaryResults = allPokemon.filter( pokemon => {
+        r = pokemon.name.toLowerCase() === 'articuno';
+        r += pokemon.name.toLowerCase() === 'zapdos';
+        r += pokemon.name.toLowerCase() === 'moltres';
+        r += pokemon.name.toLowerCase() === 'mewtwo';
+       return r
+    })
+    clearPokemon();
+    renderPokemon(legendaryResults);
 });

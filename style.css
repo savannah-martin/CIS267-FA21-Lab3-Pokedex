@@ -29,6 +29,22 @@ h1 {
 
 .btn:hover {
   background-color: rgb(6, 24, 24);
+  color: white;
+}
+
+.star-btn {
+  text-align: end;
+  width: 100%;
+  font-size: 26px;
+}
+
+.star-btn a {
+  text-decoration: none;
+  color: black;
+}
+
+.star-btn a:hover {
+  color:white;
 }
 
 .poke-container {
