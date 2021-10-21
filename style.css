@@ -32,13 +32,12 @@ h1 {
   color: white;
 }
 
-.star-btn {
-  text-align: end;
+.bi {
   width: 100%;
   font-size: 26px;
 }
 
-.star-btn a {
+.bi a {
   text-decoration: none;
   color: black;
 }

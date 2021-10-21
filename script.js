@@ -448,14 +448,14 @@ legendaryButton.addEventListener('click', () => {
 });
 
 function changeFav (idStar) {
-    if (document.getElementById(idStar).className == "bi bi-star") {
+    if (document.getElementById(idStar).className = "bi bi-star") {
         document.getElementById(idStar).className = "bi bi-star-fill"
-    this.isFavorite === true
+        this.isFavorite === true
     
     }
     else {
-    document.getElementById(idStar).className == "bi bi-star"
-    this.isFavorite === false
+        document.getElementById(idStar).className == "bi bi-star"
+        this.isFavorite === false
     }
 }
 
