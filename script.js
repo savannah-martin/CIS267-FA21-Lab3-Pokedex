@@ -104,9 +104,9 @@ const createPokemonCard = (pokemon) => {
     poke_container.appendChild(pokemonEl);
 };
 
-const rendershinyPokemon = async function (pokemonArray) {
-    pokemonArray.forEach(pokemon => createShinyPokemonCard(pokemon));!!!!!!!!!
-};
+// const rendershinyPokemon = async function (pokemonArray) {
+//     pokemonArray.forEach(pokemon => createShinyPokemonCard(pokemon));!!!!!!!!!
+// };
 
 shinyButton.addEventListener('click', () => {
     rendershinyPokemon(allPokemon);
