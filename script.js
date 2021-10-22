@@ -71,7 +71,7 @@ const createPokemonCard = (pokemon) => {
     if (type2 != null) {
         pokemonEl.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
         const pokemonInnerHTML = `
-        <div> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
+        <div id="stardiv"> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
         <div class="img-container">
         <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
@@ -87,7 +87,7 @@ const createPokemonCard = (pokemon) => {
     else {
         pokemonEl.style.backgroundColor = color;
         const pokemonInnerHTML = `
-        <div> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
+        <div id="stardiv"> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
         <div class="img-container">
         <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
@@ -125,7 +125,7 @@ const createShinyPokemonCard = (pokemon) => {
     if (type2 != null) {
         pokemonEl.style.backgroundImage = `linear-gradient(to right, rgba(0,0,0,0) 0%,${color} 1%,${color2} 100%)`;
         const pokemonInnerHTML = `
-        <div> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
+        <div id="stardiv"> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
         <div class="img-container">
         <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
@@ -141,7 +141,7 @@ const createShinyPokemonCard = (pokemon) => {
     else {
         pokemonEl.style.backgroundColor = color;
         const pokemonInnerHTML = `
-        <div> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})> </a></div>
+        <div id="stardiv"> <a href="#" class="bi bi-star" id=${pokemon.id} onclick = changeFav(${pokemon.id})></a></div>
         <div class="img-container">
         <!--<img id="pokeImg" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png"" alt="${name}">-->
         <img src="${officialArtwork}" />
@@ -448,22 +448,28 @@ legendaryButton.addEventListener('click', () => {
 });
 
 function changeFav (idStar) {
-    if (document.getElementById(idStar).className = "bi bi-star") {
-        document.getElementById(idStar).className = "bi bi-star-fill"
-        // this.isFavorite === true
+    starIcon = document.getElementById(idStar)
+    if (starIcon.className == "bi bi-star") {
+        starIcon.className = "bi bi-star-fill"
+        starIcon.isFavorite === true
     
+        console.log(this.isFavorite)
+
     }
     else {
-        document.getElementById(idStar).className == "bi bi-star"
-        // this.isFavorite === false
+        starIcon.className = "bi bi-star"
+        starIcon.isFavorite === false
     }
 }
 
 favoriteButton.addEventListener('click', () => {
-    let favoriteResults = allPokemon.filter( pokemon => {
-                r = pokemon.className === "bi-star-fill"
+    let favoriteResults = allPokemon.filter( () => {
+                r = this.className === "bi-star-fill"
+                // r = pokemon.isFavorite === true
                 return r
             })
+    
+    console.log(favoriteResults)
 
     clearPokemon();
     renderPokemon(favoriteResults);

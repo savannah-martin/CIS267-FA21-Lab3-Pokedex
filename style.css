@@ -32,18 +32,24 @@ h1 {
   color: white;
 }
 
+#stardiv {
+  position: fixed;
+  right: 15px;
+}
+
 .bi {
   width: 100%;
   font-size: 26px;
+  color: white;
 }
 
 .bi a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
-.star-btn a:hover {
-  color:white;
+.bi:hover {
+  color:yellow;
 }
 
 .poke-container {
